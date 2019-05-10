@@ -18,7 +18,7 @@ jobs:
           name: Run robot tests
           command: |
             . venv/bin/activate
-            robot --outputdir robot/results robot/tests
+            robot --outputdir robot/results --xunit xunit.xml robot/tests
 
       - store_artifacts:
           path: robot/results/
@@ -26,3 +26,4 @@ jobs:
 
       - store_test_results:
           path: robot/results/
+          destionation: tr2
