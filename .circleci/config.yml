@@ -8,17 +8,17 @@ jobs:
       - checkout
 
       - run:
-        name: Install Python dependencies in a virtual environment
-        command: |
-          python3 -m venv venv
-          . venv/bin/activate
-          pip install -r requirements.txt
+          name: Install Python dependencies in a virtual environment
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
 
       - run:
-        name: Run robot tests
-        command: |
-          . venv/bin/activate
-          robot --outputdir robot/results robot/tests
+          name: Run robot tests
+          command: |
+            . venv/bin/activate
+            robot --outputdir robot/results robot/tests
 
       - store_artifacts:
           path: robot/results/
