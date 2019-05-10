@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.2-stretch-browsers
+
+    steps:
+      - checkout
+
+      - run:
+        name: Install Python dependencies in a virtual environment
+        command: |
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
+
+      - run:
+        name: Run robot tests
+        command: |
+          . venv/bin/activate
+          robot --outputdir robot/results robot/tests
+
+      - store_artifacts:
+          path: robot/results/
+          destination: tr1
+
+      - store_test_results:
+          path: robot/results/
